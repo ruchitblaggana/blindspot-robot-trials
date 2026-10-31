@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --graphite: #20272D;
+    --charcoal: #29343D;
+    --steel: #465761;
+    --cyan: #66D9E8;
+    --amber: #F0B95A;
+    --mint: #83D6A4;
+    --coral: #EF7971;
+    --soft-grey: #C7D0D5;
+    --light-bg: #F1F3F1;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background: var(--graphite);
+    color: var(--soft-grey);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Code', monospace;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400;
+  }
+  .btn-primary {
+    @apply btn;
+    background: var(--cyan);
+    color: var(--graphite);
+  }
+  .btn-primary:hover {
+    background: #7DE5F0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(102, 217, 232, 0.3);
+  }
+  .btn-secondary {
+    @apply btn;
+    background: var(--steel);
+    color: var(--soft-grey);
+  }
+  .btn-secondary:hover {
+    background: #54697A;
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    @apply btn;
+    background: transparent;
+    color: var(--soft-grey);
+    border: 1px solid var(--steel);
+  }
+  .btn-ghost:hover {
+    background: rgba(70, 87, 97, 0.3);
+  }
+  .btn-danger {
+    @apply btn;
+    background: rgba(239, 121, 113, 0.15);
+    color: var(--coral);
+    border: 1px solid rgba(239, 121, 113, 0.3);
+  }
+  .btn-danger:hover {
+    background: rgba(239, 121, 113, 0.25);
+  }
+
+  .panel {
+    background: var(--charcoal);
+    border: 1px solid rgba(70, 87, 97, 0.5);
+    @apply rounded-xl;
+  }
+
+  .panel-header {
+    @apply px-4 py-3 border-b;
+    border-color: rgba(70, 87, 97, 0.5);
+  }
+
+  .input {
+    @apply w-full px-3 py-2 rounded-lg text-sm font-mono;
+    background: var(--graphite);
+    border: 1px solid var(--steel);
+    color: var(--soft-grey);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--cyan);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium;
+  }
+  .badge-cyan { background: rgba(102, 217, 232, 0.15); color: var(--cyan); }
+  .badge-amber { background: rgba(240, 185, 90, 0.15); color: var(--amber); }
+  .badge-mint { background: rgba(131, 214, 164, 0.15); color: var(--mint); }
+  .badge-coral { background: rgba(239, 121, 113, 0.15); color: var(--coral); }
+  .badge-grey { background: rgba(199, 208, 213, 0.1); color: var(--soft-grey); }
+
+  .telemetry-row {
+    @apply flex justify-between items-center py-1.5 text-sm;
+  }
+  .telemetry-label {
+    @apply text-xs uppercase tracking-wider;
+    color: rgba(199, 208, 213, 0.6);
+  }
+  .telemetry-value {
+    @apply font-mono text-sm;
+    color: var(--soft-grey);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--graphite); }
+::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #54697A; }
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scan { animation: scan-line 3s linear infinite; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in { animation: slide-in-right 0.25s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
